@@ -17,7 +17,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     var response = new {
         response_type= "in_channel",
-        text = $"Your mom is {cmd.Text}"        
+        text = RandomResponse(cmd.Text)     
     };
 
     return req.CreateResponse(HttpStatusCode.OK, response);
@@ -28,4 +28,28 @@ public class SlackCommand
     public string Text { get; set; }
 
     public string Token { get; set; }
+}
+
+public string RandomResponse(string text)
+{
+    var possibleResponses = new[]
+    {
+        $"Your mom is {text}",
+        $"Your nose is {text}",
+        $"You're {text}",
+        $"{text}, brah",
+        "It'll be great",
+        "Great job",
+        ":gj:",
+        "Let's go for a walk",
+        "Ock",
+        ":smoothie-bagel-walk:",
+        ":whiskey:"
+    };
+
+    var rand = new Random(DateTime.Now.ToString().GetHashCode());
+
+    var r = rand.Next(possibleResponses.Length);
+
+    return possibleResponses[r];
 }
