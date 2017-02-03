@@ -30,7 +30,7 @@ public class SlackCommand
     public string Token { get; set; }
 }
 
-public string RandomResponse(string text)
+public static string RandomResponse(string text)
 {
     var possibleResponses = new[]
     {
