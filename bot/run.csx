@@ -11,17 +11,18 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 {
     var data = await req.Content.ReadAsFormDataAsync();
 
+    var token = data["token"];
+
     var cmd = new SlackCommand
     {
         Text = data["text"],
-        Token = data["token"],
         ChannelName = data["channel_name"],
         UserId = data["user_id"],
         UserName = data["user_name"]
     };
     
     /* your MOM is NOT open to everyone */
-    if(cmd == null || cmd.Token != token){
+    if(token != token){
         return req.CreateResponse(HttpStatusCode.Forbidden, "your mom forbids you.");
     }
 
