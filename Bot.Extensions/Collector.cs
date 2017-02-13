@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
@@ -17,7 +18,7 @@ namespace Bot.Extensions
                 .CreateCloudBlobClient();
         }
 
-        public static async void Collect(SlackCommand cmd)
+        public static async Task Collect(SlackCommand cmd)
         {            
             var blob = BlobClient
                 .GetContainerReference("bot")
