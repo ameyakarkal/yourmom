@@ -23,7 +23,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
         text = RandomResponse(cmd.Text)     
     };
 
-    //await Collector.Collect(cmd);
+    await Collector.Collect(cmd);
 
     return req.CreateResponse(HttpStatusCode.OK, response);
 }
