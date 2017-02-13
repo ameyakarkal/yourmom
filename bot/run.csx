@@ -1,6 +1,9 @@
 #r "Newtonsoft.Json"
+#r "../dist/Bot.Extensions.dll"
+
 using System.Net;
 using Newtonsoft.Json;
+using Bot.Extensions;
 
 public static string token = System.Configuration.ConfigurationManager.AppSettings["token"];
 
@@ -20,14 +23,9 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
         text = RandomResponse(cmd.Text)     
     };
 
+    await Collector.Collect(cmd);
+
     return req.CreateResponse(HttpStatusCode.OK, response);
-}
-
-public class SlackCommand
-{
-    public string Text { get; set; }
-
-    public string Token { get; set; }
 }
 
 public static string RandomResponse(string text)
