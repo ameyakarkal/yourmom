@@ -36,8 +36,10 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     return req.CreateResponse(HttpStatusCode.OK, response);
 }
 
-public static string RandomResponse(string text)
+public static string RandomResponse(SlackCommand cmd)
 {
+    var text = cmd.Text;
+
     var possibleResponses = new[]
     {
         $"Your mom is {text}",
@@ -57,5 +59,7 @@ public static string RandomResponse(string text)
 
     var r = rand.Next(possibleResponses.Length);
 
-    return possibleResponses[r];
+    var response = possibleResponses[r];
+
+    return string.Compare(cmd.ChannelName, "all-caps", StringComparison.InvariantCulture) == 0 ? response.ToUpper() : response;
 }
