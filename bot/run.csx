@@ -28,7 +28,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     var response = new {
         response_type= "in_channel",
-        text = RandomResponse(cmd.Text)     
+        text = RandomResponse(cmd)     
     };
 
     await Collector.Collect(cmd);
