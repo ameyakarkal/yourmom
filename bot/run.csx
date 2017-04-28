@@ -1,6 +1,6 @@
 #r "Newtonsoft.Json"
 #r "../dist/Bot.Extensions.dll"
-
+using System;
 using System.Net;
 using Newtonsoft.Json;
 using Bot.Extensions;
