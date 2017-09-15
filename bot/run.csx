@@ -29,7 +29,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     var response = new {
         response_type= "in_channel",
         text = RandomResponse(cmd),
-        username = RandomEmoji()     
+        icon_emoji = RandomEmoji()     
     };
 
     await Collector.Collect(cmd);
