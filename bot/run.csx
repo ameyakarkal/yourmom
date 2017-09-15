@@ -28,7 +28,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     var response = new {
         response_type= "in_channel",
-        text = RandomResponse(cmd)     
+        text = RandomResponse(cmd),
+        username = RandomEmoji()     
     };
 
     await Collector.Collect(cmd);
@@ -62,4 +63,22 @@ public static string RandomResponse(SlackCommand cmd)
     var response = possibleResponses[r];
 
     return string.Compare(cmd.ChannelName, "all-caps", StringComparison.InvariantCulture) == 0 ? response.ToUpper() : response;
+}
+
+public static string RandomEmoji()
+{
+    var emojiList = new[]
+    {
+        "jared",
+        "jared-fancy",
+        "jared-farmer",
+        "jared-anime-pants",
+        "jared-optimist-prime"
+    };
+
+    var rand = new Random(DateTime.Now.ToString().GetHashCode());
+
+    var r = rand.Next(emojiList.Length);
+
+    return emojiList[r];
 }
