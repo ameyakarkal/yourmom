@@ -1,4 +1,4 @@
-﻿namespace Bot.Extensions
+﻿namespace SlackBot
 {
     public class SlackCommand
     {
