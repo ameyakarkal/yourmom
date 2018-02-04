@@ -20,6 +20,15 @@ namespace SlackBot
             ":whiskey:"
         };
 
+        private static readonly string[] Avatars = new[]
+        {
+            "https://emoji.slack-edge.com/T0297JM3N/jared-fancy/eb4f5681f7b8c220.png",
+            "https://emoji.slack-edge.com/T0297JM3N/jared-anime-pants/89d3ba80c629d106.png",
+            "https://emoji.slack-edge.com/T0297JM3N/jared-farmer/6497e05835adf519.png",
+            "https://emoji.slack-edge.com/T0297JM3N/jared-optimist-prime/b78e15b1dbfe2adf.png",
+            "https://emoji.slack-edge.com/T0297JM3N/jared/d927b5ff3d0c8e41.jpg"
+        };
+
         private static readonly Random Randomizer = new Random(DateTime.Now.ToString(CultureInfo.CurrentCulture).GetHashCode());
 
         public static SlackResponse Respond(SlackCommand cmd)
@@ -28,11 +37,9 @@ namespace SlackBot
 
             var text = FormatReply(template, cmd);
 
-            return new SlackResponse
-            {
-                ResponseType = "in_channel",
-                Text = text
-            };
+            var avatar = PickAvatar();
+
+            return new SlackResponse(text, avatar);
         }
 
         public static string PickTemplate(SlackCommand cmd)
@@ -40,6 +47,13 @@ namespace SlackBot
             var r = Randomizer.Next(Templates.Length);
 
             return Templates[r];
+        }
+
+        public static string PickAvatar()
+        {
+            var r = Randomizer.Next(Avatars.Length);
+
+            return Avatars[r];
         }
 
         public static string FormatReply(string template, SlackCommand cmd)

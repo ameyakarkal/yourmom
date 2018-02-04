@@ -41,23 +41,5 @@ namespace SlackBot
 
             return req.CreateResponse(HttpStatusCode.OK, response);
         }
-      
-        //public static string RandomEmoji()
-        //{
-        //    var emojiList = new[]
-        //    {
-        //        ":jared:",
-        //        ":jared-fancy:",
-        //        ":jared-farmer:",
-        //        ":jared-anime-pants:",
-        //        ":jared-optimist-prime:"
-        //    };
-
-        //    var rand = new Random(DateTime.Now.ToString().GetHashCode());
-
-        //    var r = rand.Next(emojiList.Length);
-
-        //    return emojiList[r];
-        //}
     }
 }
